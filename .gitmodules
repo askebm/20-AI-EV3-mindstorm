@@ -1,7 +1,7 @@
-[submodule "sokoban-game"]
-	path = sokoban-game
-	url = https://github.com/morenod/sokoban.git
 [submodule "report"]
 	path = report
 	url = https://github.com/askebm/20-AI-EV3-mindstorm-report.git
 	branch = master
+[submodule "python-sokoban"]
+	path = python-sokoban
+	url = https://github.com/bravegnu/python-sokoban
