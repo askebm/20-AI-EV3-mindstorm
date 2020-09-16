@@ -23,9 +23,45 @@ class Point:
 ##
 class Level:
     def __init__(self,level):
-        self.data = level
+        self.data = level.copy()
+        self.boxes = []
+        self.goals = []
+        for y in range(len(level)):
+            for x in range(len(level[y])):
+                p = Point(x,y)
+                if self[p] == '@':
+                    self.player = Point(x,y)
+                    self[p] = ' '
+                elif self[p] == '+':
+                    self.player = Point(x,y)
+                    self.goals.append(Point(x,y))
+                    self[p] = '.'
+                elif self[p] == '$':
+                    self.boxes.append(Point(x,y))
+                    self[p] = ' '
+                elif self[p] == '*':
+                    self.boxes.append(Point(x,y))
+                    self.goals.append(Point(x,y))
+                    self[p] = '.'
+                elif self[p] == '.':
+                    self.goals.append(Point(x,y))
+
+
+
     def __getitem__(self,key):
         return self.data[key.y][key.x]
+    def __setitem__(self,key,item):
+        self.data[key.y][key.x] = item
+
+#
+# Tile   |   | Dock
+# -------+---+-----
+# Worker | @ | +
+# Floor  |   | .
+# Box    | $ | *
+# Wall   | # | x
+#
+
 
 ##
 class Node:
@@ -76,6 +112,7 @@ class Graph
                     node.connections.append((self.d[levelHash],weight))
                     if recurse:
                         self.generate(node.connections[-1][0])
+
 
 
 
