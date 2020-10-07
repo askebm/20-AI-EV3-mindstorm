@@ -1,0 +1,57 @@
+digraph G {
+
+	// This is just an example for you to use as a template.
+	// Edit as you like. Whenever you save a legal graph
+	// the layout in the graphviz window will be updated.
+	node [shape=square];
+
+	controller
+
+
+		subgraph cluster_aa {
+			{
+				edge[label="cross detected"]
+					"Follow line" ->					"Go straight"
+			}
+
+			label="a[aA]|AA";
+		}
+	subgraph cluster_ab {
+		{
+			edge[label="cross detected"]
+				"Follow line "-> "Turn";
+		}
+		label="ab";
+	}
+	subgraph cluster_A {
+		label="Ab";
+		edge [label="cross detected"]
+			"Follow line  " -> "Go straight "
+			edge [label="Past cross"]
+			"Go straight " -> "Push can" 
+			edge [label="Can position reached"]
+			"Push can" -> "Reverse to cross" 
+			edge [label=""]
+			"Reverse to cross" -> "Turn "
+	}
+
+
+	{
+		edge[style=dashed]
+			controller -> {"Follow line" "Follow line  " "Follow line "};
+
+	}
+
+	subgraph cluster_os {
+		controller -> PID -> "Cross event detection" -> "Direction detection" ->controller;
+		label=OS
+	}
+
+	node [shape=none];
+	edge [style=dotted];
+	{"Follow line " "Follow line"} -> speed -> PID;
+
+
+}
+
+
