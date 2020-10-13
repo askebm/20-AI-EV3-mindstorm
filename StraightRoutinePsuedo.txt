@@ -1,0 +1,11 @@
+Goal is to follow line. Followed by detecting a cross (start of new tile/node), incrementing global counter,
+and continue going straight.
+
+Routine to check cross detection
+
+Color sensors BOTH change value reflecting that they have seen the black lines denoting a cross.
+    increment global counter
+
+
+
+At the end of the routine (the follow line and go straight routine) global counter should be reset
