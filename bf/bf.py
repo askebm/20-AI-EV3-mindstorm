@@ -59,7 +59,7 @@ class Tree():
         
 
         self.level = [ re.sub("[MJG]",".",i) for i in level ]
-        self.root.hash = level
+        self.root.hash = [ re.sub("G",".",i) for i in level ]
         self.nodes = {"".join(self.root.hash):self.root}
 
     def generate_hash(self,node):
@@ -71,28 +71,29 @@ class Tree():
         return result
 
     def generate_children(self,node):
-        print("I wanna make children")
+#        print("I wanna make children")
         for p in [Position(1,0),Position(0,1),Position(-1,0),Position(0,-1)]:
             new_player = p+node.player
             behind_box = new_player + p
             n = None
             
             if (node.hash[new_player.y][new_player.x] == "."): 
-                n = node.c()
+                n = Node()
                 n.player = new_player
+                n.boxes = node.boxes
             elif ( node.hash[new_player.y][new_player.x] == "J" and
                         (node.hash[behind_box.y][behind_box.x] == ".")):
-                n = node.c()
+                n = Node()
                 n.player = new_player
                 n.boxes = []
                 for bi in node.boxes:
-                    if b == bi:
+                    if new_player == bi:
                         n.boxes.append(behind_box)
                     else:
-                        n.boxes.append(copy.copy(bi))
+                        n.boxes.append(bi)
             
             if n != None:
-                print("I made a child")
+#                print("I made a child")
                 n.hash = self.generate_hash(n)
                 h = "".join(n.hash)
                 if not self.nodes.get(h,False):
@@ -105,7 +106,7 @@ class Tree():
         for d in range(max_iter):
             result = self._bf_search(self.root,depth=d)
             if result != None:
-                print(d)
+                print("Solution found")
                 return result
         print("No solution found")
         return None
@@ -114,7 +115,7 @@ class Tree():
     def _bf_search(self,node,depth=1):
         if depth == 0:
             self.generate_children(node)
-            print("Generated " + str(len(node.children)) +" children")
+#            print("Generated " + str(len(node.children)) +" children")
             for child in node.children:
                 result = True
                 for box in child.boxes:
@@ -130,6 +131,25 @@ class Tree():
                      return res
             return None
 
+    def to_dot(self,path):
+        f = open(path,mode='w')
+        f.write(r'digraph G {'+ "\n")
+        f.write('graph [fontname = "monospace"];\n')
+        f.write('node [fontname = "monospace"];\n')
+        f.write('edge [fontname = "monospace"];\n')
+        self._to_dot(f,self.root)
+        f.write(r'}')
+        f.close()
+    
+    def _to_dot(self,f,node):
+        f.write(r'"' + r'\n'.join(node.hash) + r'"'+ "\n")
+        if node.parent != None:
+            f.write(r'"' + r'\n'.join(node.parent.hash) + r'" ->  "' + r'\n'.join(node.hash) + r'"'+ "\n")
+        for child in node.children:
+            self._to_dot(f,child)
+
+
+
 ##
 
 l = ["XXXXXXXXXXXX",
@@ -142,8 +162,10 @@ l = ["XXXXXXXXXXXX",
 
 
 t = Tree(l)
-t.bf_search(max_iter=1000)
+t.bf_search(max_iter=135)
 
-
+##
+t.to_dot("dot2.gv")
+print("Done")
 
 
