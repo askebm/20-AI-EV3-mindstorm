@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 import re
 import copy
+import numpy as np
+from queue import PriorityQueue
+import heapdict
+import time
 
 
 ##
@@ -27,6 +31,9 @@ class Position():
 
     def __deepcopy_(self):
         return Position(self.x.deepcopy(),self.y.deepcopy())
+
+    def norm(self):
+        return np.sqrt(self.x**2+self.y**2)
 
 ##
 
@@ -96,7 +103,7 @@ class Tree():
                 result[node.player.y][node.player.x+1:]
         return result
 
-    def generate_children(self,node):
+    def generate_children(self,node,graph=False):
 #        print("I wanna make children")
         moves =[Position(1,0),Position(0,1),Position(-1,0),Position(0,-1)]
         for p in moves:
@@ -136,6 +143,13 @@ class Tree():
                     self.nodes[h] = n
                     node.children.append(self.nodes[h])
                     n.parent = node
+                if graph:
+                    n = self.nodes[h]
+                    if n not in node.children:
+                        node.children.append(n)
+                    if node not in n.children:
+                        n.children.append(node)
+
 #                nodes[n.hash].children.append(node)
 
     def bf_search(self,max_iter=500):
@@ -164,6 +178,79 @@ class Tree():
                      return res
             return None
 
+    def a_star_heuristic(self,node):
+        result = 0
+        for box in node.boxes:
+            dist = np.inf
+            for g in self.goals:
+                l = (g-box).norm()
+                if l < dist:
+                    dist = l
+            result += dist
+        return result 
+
+    def a_star_reconstruct_path(self,cameFrom,current):
+        total_path = [current]
+        result = ""
+        while current in cameFrom.keys():
+
+            cF = cameFrom[current]
+            delta_move = current.player - cF.player
+            instruction = ""
+            if delta_move.x == -1:
+                instruction = "l"
+            elif delta_move.x == 1: 
+                instruction = "r"
+            elif delta_move.y == 1: 
+                instruction = "d"
+            elif delta_move.y == -1: 
+                instruction = "u"
+
+            if current.boxes != cF.boxes:
+                instruction = instruction.upper()
+            result = instruction + result
+
+            current = cF
+            total_path.insert(0,current)
+        
+        return result
+
+    def a_star(self,max_iter=500):
+        start = self.root
+        openSet = heapdict.heapdict()
+        openSet[start] = self.a_star_heuristic(start)
+
+        cameFrom = {}
+        gScore = {}
+        fScore = {}
+
+        gScore[start] = 0
+
+        fScore[start] = self.a_star_heuristic(start)
+
+        while openSet.peekitem():
+            max_iter -= 1
+            current , current_score = openSet.popitem()
+            if self.isSolution("".join(current.hash)):
+                print("A-star found a solution")
+                return self.a_star_reconstruct_path(cameFrom,current)
+
+            self.generate_children(current,graph=True)
+            for neighbor in current.children:
+                tentative_gScore = gScore[current] + 1
+                if tentative_gScore < gScore.get(neighbor,np.inf):
+                    cameFrom[neighbor] = current
+                    gScore[neighbor] = tentative_gScore
+                    fScore[neighbor] = tentative_gScore + self.a_star_heuristic(neighbor)
+                    if not openSet.get(neighbor):
+                        openSet[neighbor] = fScore[neighbor]
+        print("A-start did not find a solution")
+        return None
+
+
+
+
+
     def to_dot(self,path):
         f = open(path,mode='w')
         f.write(r'digraph G {'+ "\n")
@@ -180,6 +267,10 @@ class Tree():
             f.write(r'"' + r'\n'.join(node.parent.hash) + r'" ->  "' + r'\n'.join(node.hash) + r'"'+ "\n")
         for child in node.children:
             self._to_dot(f,child)
+
+
+    
+
 
 
     def layer_to_dot(self,path,layer):
@@ -221,12 +312,7 @@ class Tree():
             node = parent
             parent = node.parent
 
-
         return result
-
-
-
-
 
 
 ##
@@ -241,12 +327,29 @@ l = ["XXXXXXXXXXXX",
 
 ##
 
-t = Tree(l)
-solution = t.bf_search(max_iter=140)
 
 ##
 
-t.generate_path(solution)
+t_a_star = Tree(l)
+start = time.time()
+s_a_star = t_a_star.a_star()
+end = time.time()
+print("Time elapsed for A-star: " + str(end-start))
+
+##
+
+t_bf = Tree(l)
+start = time.time()
+solution = t_bf.bf_search(max_iter=140)
+s_bf = None
+if solution:
+    s_bf = t_bf.generate_path(solution)
+end = time.time()
+print("Time elapsed for bredth first: " + str(end-start))
+
+
+##
+
 
 ##
 t.layer_to_dot("layer.gv",108)
