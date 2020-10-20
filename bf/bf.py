@@ -119,12 +119,12 @@ class Tree():
                         (node.hash[behind_box.y][behind_box.x] == ".")):
 
                 wall_counter = 0
-                if not [True for g in self.goals if behind_box == g]:
-                    for move in moves:
-                        maybe_wall = move + behind_box
-                        if self.level[maybe_wall.y][maybe_wall.x] == "X":
-                            wall_counter +=1
-
+                # if not [True for g in self.goals if behind_box == g]:
+                #     for move in moves:
+                #         maybe_wall = move + behind_box
+                #         if self.level[maybe_wall.y][maybe_wall.x] == "X":
+                #             wall_counter +=1
+                
                 if wall_counter <= 1:
                     n = Node()
                     n.player = new_player
@@ -228,7 +228,7 @@ class Tree():
 
         fScore[start] = self.a_star_heuristic(start)
 
-        while openSet.peekitem():
+        while openSet.__len__() > 0:
             max_iter -= 1
             current , current_score = openSet.popitem()
             if self.isSolution("".join(current.hash)):
@@ -317,7 +317,7 @@ class Tree():
 
 ##
 
-l = ["XXXXXXXXXXXX",
+l_original = ["XXXXXXXXXXXX",
 "XX...X.....X",
 "XX...X.GG..X",
 "XXJJJ.XGGXXX",
@@ -325,38 +325,73 @@ l = ["XXXXXXXXXXXX",
 "X...X...XXXX",
 "XXXXXXXXXXXX"]
 
+l_test = [
+"XXXXXXXXXXXXXXXXX",
+"XXX..XXXXXXXXXXXX",
+"X..GGX.XXXXXXXXXX",
+"X.XGGX.X.....XXXX",
+"X.XG.XXX...J....X",
+"X.XG...X.J.J.JJ.X",
+"X.X..M.XXX.JXX..X",
+"X...........XXXXX",
+"XX..XXXXXXXXXXXXX",
+"XXXXXXXXXXXXXXXXX"
+]
+
+l = [
+"XXXXXXXXXX",
+"X........X",
+"X.X.X.X.XX",
+"X..J.J.J.X",
+"XGXX.X.X.X",
+"XGX.....MX",
+"XGXXXXXXXX",
+"XXX"
+]
+
+##
+
+
+##
+
+# t_a_star = Tree(l)
+# start = time.time()
+# s_a_star = t_a_star.a_star()
+# end = time.time()
+# print("Time elapsed for A-star: " + str(end-start))
+
+# if s_a_star is not None:
+#     print(s_a_star)
+
+##
+
+try:
+    t_bf = Tree(l)
+    start = time.time()
+    solution = t_bf.bf_search(max_iter=200)
+    s_bf = None
+    if solution:
+        s_bf = t_bf.generate_path(solution)
+    print(s_bf)
+    end = time.time()
+    print("Time elapsed for bredth first: " + str(end-start))
+except:
+    print("bf number of nodes: " + str(t_bf.number_of_nodes()))
+    print("bf depth: " + str(t_bf.max_depth()))
+
 ##
 
 
 ##
-
-t_a_star = Tree(l)
-start = time.time()
-s_a_star = t_a_star.a_star()
-end = time.time()
-print("Time elapsed for A-star: " + str(end-start))
-
-##
-
-t_bf = Tree(l)
-start = time.time()
-solution = t_bf.bf_search(max_iter=140)
-s_bf = None
-if solution:
-    s_bf = t_bf.generate_path(solution)
-end = time.time()
-print("Time elapsed for bredth first: " + str(end-start))
-
-
-##
-
-
-##
-t.layer_to_dot("layer.gv",108)
+# t.layer_to_dot("layer.gv",108)
 print("Done")
 
 ##
-t.to_dot("dot2.gv")
+# t.to_dot("dot2.gv")
 print("Done")
 
+# print("a star number of nodes: " + str(t_a_star.number_of_nodes()))
+# print("a star depth: " + str(t_a_star.max_depth()))
 
+print("bf number of nodes: " + str(t_bf.number_of_nodes()))
+print("bf depth: " + str(t_bf.max_depth()))
