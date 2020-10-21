@@ -118,38 +118,44 @@ class Tree():
             elif ( node.hash[new_player.y][new_player.x] == "J" and
                         (node.hash[behind_box.y][behind_box.x] == ".")):
 
-                wall_counter = 0
+                # old deadlock detection
                 # if not [True for g in self.goals if behind_box == g]:
                 #     for move in moves:
                 #         maybe_wall = move + behind_box
                 #         if self.level[maybe_wall.y][maybe_wall.x] == "X":
                 #             wall_counter +=1
                 
+                bb_is_goal = False
+                for goal in self.goals:
+                    if behind_box == goal:
+                        bb_is_goal = True
+
                 left_wall = False
                 right_wall = False
                 upper_wall = False
                 down_wall = False
 
                 for move in moves:
-                    potential_wall = move + behind_box
 
-                    if self.level[potential_wall.y][potential_wall.x] == "X":
-                        if move == moves[0]:
-                            right_wall = True
-                        elif move == moves[2]:
-                            left_wall = True
-                    if self.level[potential_wall.x][potential_wall.y] == "X":
-                        if move == moves[1]:
-                            upper_wall = True
-                        elif move == moves[3]:
-                            down_wall = True
+                    # some notes for later
+                    # we should actually look at behind_box and check for +1 and -1 for x
+                    # and the same for y
 
-                bb_is_goal = False
-                for goal in self.goals:
-                    if behind_box == goal:
-                        bb_is_goal = True
+                    # this could probably easily be done more efficiently
+                    # should just subtract / add move to behind_box
 
-                if right_wall or left_wall and upper_wall or down_wall and bb_is_goal:
+                    if self.level[behind_box.y][behind_box.x + 1] == "X":
+                        right_wall = True
+                    if self.level[behind_box.y][behind_box.x - 1] == "X":
+                        left_wall = True
+
+                    if self.level[behind_box.y - 1][behind_box.x] == "X":
+                        upper_wall = True
+                    if self.level[behind_box.y + 1][behind_box.x] == "X":
+                        down_wall = True
+
+                if not ((right_wall or left_wall) and (upper_wall or down_wall)) or bb_is_goal:
+
                     n = Node()
                     n.player = new_player
                     n.boxes = []
@@ -158,6 +164,25 @@ class Tree():
                             n.boxes.append(behind_box)
                         else:
                             n.boxes.append(bi)
+
+
+                # reset after we are done with this node
+                left_wall = False
+                right_wall = False
+                upper_wall = False
+                down_wall = False
+
+
+                # no deadlock detection for testing purposes
+
+                # n = Node()
+                # n.player = new_player
+                # n.boxes = []
+                # for bi in node.boxes:
+                #     if new_player == bi:
+                #         n.boxes.append(behind_box)
+                #     else:
+                #         n.boxes.append(bi)
             
             
             if n != None:
@@ -342,7 +367,7 @@ class Tree():
 
 ##
 
-l_original = ["XXXXXXXXXXXX",
+l_wat = ["XXXXXXXXXXXX",
 "XX...X.....X",
 "XX...X.GG..X",
 "XXJJJ.XGGXXX",
@@ -350,7 +375,7 @@ l_original = ["XXXXXXXXXXXX",
 "X...X...XXXX",
 "XXXXXXXXXXXX"]
 
-l_test = [
+l_yikes = [
 "XXXXXXXXXXXXXXXXX",
 "XXX..XXXXXXXXXXXX",
 "X..GGX.XXXXXXXXXX",
