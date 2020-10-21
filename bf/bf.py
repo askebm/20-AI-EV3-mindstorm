@@ -125,7 +125,31 @@ class Tree():
                 #         if self.level[maybe_wall.y][maybe_wall.x] == "X":
                 #             wall_counter +=1
                 
-                if wall_counter <= 1:
+                left_wall = False
+                right_wall = False
+                upper_wall = False
+                down_wall = False
+
+                for move in moves:
+                    potential_wall = move + behind_box
+
+                    if self.level[potential_wall.y][potential_wall.x] == "X":
+                        if move == moves[0]:
+                            right_wall = True
+                        elif move == moves[2]:
+                            left_wall = True
+                    if self.level[potential_wall.x][potential_wall.y] == "X":
+                        if move == moves[1]:
+                            upper_wall = True
+                        elif move == moves[3]:
+                            down_wall = True
+
+                bb_is_goal = False
+                for goal in self.goals:
+                    if behind_box == goal:
+                        bb_is_goal = True
+
+                if right_wall or left_wall and upper_wall or down_wall and bb_is_goal:
                     n = Node()
                     n.player = new_player
                     n.boxes = []
@@ -134,6 +158,7 @@ class Tree():
                             n.boxes.append(behind_box)
                         else:
                             n.boxes.append(bi)
+            
             
             if n != None:
 #                print("I made a child")
