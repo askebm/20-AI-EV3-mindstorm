@@ -19,7 +19,7 @@ def follow_for_distance(tank,distance):
     if not hasattr(tank, 'distance') or tank.distance is None:
         tank.left_motor.position = 0
         tank.distance = distance
-    if tank.left_motor.position >= abs(tank.distance):
+    if abs(tank.left_motor.position) >= tank.distance:
         tank.distance = None
         return False
     else:
@@ -156,7 +156,10 @@ class Controller:
 
                 self.cL = tmp_cL
                 self.cR = tmp_cR
-            self.tank.stop()
+
+                        
+
+        self.tank.stop()
 
 
 tank = MoveDifferential(OUTPUT_A,OUTPUT_B,EV3Tire,120)
