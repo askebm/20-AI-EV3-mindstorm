@@ -44,17 +44,16 @@ class Controller:
         self.cR = cR
         self.c_thresh = 24
 
-    def follow_line(self,interval=0.005,direction=1,condition_func = lambda tank=None : True,**kwargs):
+    def follow_line(self,interval=0.005,direction=1,speed_delta = 8,condition_func = lambda tank=None : True,**kwargs):
         default_speed = direction*30
-        speed_delta = direction*1
-
-        left_speed = default_speed
-        right_speed = default_speed
+        speed_delta = direction*8
         while condition_func(tank=self.tank , **kwargs):
             
             right_value = self.cR.reflected_light_intensity
             left_value = self.cL.reflected_light_intensity
 
+            left_speed = default_speed
+            right_speed = default_speed
             
             if left_value < self.c_thresh and right_value < self.c_thresh:
                 pass
@@ -69,9 +68,6 @@ class Controller:
                 right_speed += speed_delta
 
             else:
-                left_speed = default_speed
-                right_speed = default_speed
-
                 if left_speed < default_speed:
                     left_speed += speed_delta
                 elif left_speed > default_speed:
@@ -154,6 +150,7 @@ class Controller:
 
                 self.follow_line(
                         direction=-1,
+                        speed_delta=16,
                         condition_func=follow_for_distance,
                         distance=470
                         )
