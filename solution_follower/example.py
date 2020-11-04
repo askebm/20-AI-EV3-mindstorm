@@ -142,21 +142,18 @@ class Controller:
                         )
 
 
-#                tmp_cL =self.cL
-#                tmp_cR =self.cR
-#
-#                self.cL = tmp_cR
-#                self.cR = tmp_cL
+                while sensor1.reflected_light_intensity  < c_thresh and \
+                    sensor2.reflected_light_intensity < c_thresh :
+                    self.tank.on(SpeedPercent(-30),SpeedPercent(-30))
+                self.tank.on_for_degrees(SpeedPercent(30),SpeedPercent(30),30)
 
-                self.follow_line(
-                        direction=-1,
-                        speed_delta=16,
-                        condition_func=follow_for_distance,
-                        distance=470
-                        )
+#                self.follow_line(
+#                        direction=-1,
+#                        speed_delta=16,
+#                        condition_func=follow_for_distance,
+#                        distance=470
+#                        )
 
-#                self.cL = tmp_cL
-#                self.cR = tmp_cR
 
                         
 
