@@ -44,6 +44,15 @@ class Controller:
         self.cR = cR
         self.c_thresh = 24
 
+        for i in range(len(self.solution)-1):
+            solution_list = list(self.solution)
+            c = solution_list[i]
+            cN = solution_list[i+1]
+            if c.isupper() and c == cN:
+                solution_list[i]= c.lower()
+            self.solution = "".join(solution_list)
+
+
     def follow_line(self,interval=0.005,direction=1,speed_delta = 8,condition_func = lambda tank=None : True,**kwargs):
         default_speed = direction*30
         speed_delta = direction*8
@@ -112,9 +121,9 @@ class Controller:
 
         self.tank.on_for_degrees(SpeedPercent(30),SpeedPercent(30),80),
 
-        for u in range(i+1):
-            self.spkr.beep()
-            time.sleep(0.1)
+        #for u in range(i+1):
+        #    self.spkr.beep()
+        #    time.sleep(0.1)
 
         self.rotate(i-1)
         
@@ -133,7 +142,7 @@ class Controller:
 
             if action.isupper():
             
-                self.spkr.tone([(392,350,100),(700,350,100)],play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
+                #self.spkr.tone([(392,350,100),(700,350,100)],play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
                 self.tank.on_for_degrees(SpeedPercent(30),SpeedPercent(30),30)
 
                 self.follow_line(
@@ -145,7 +154,7 @@ class Controller:
                 while self.cL.reflected_light_intensity  > self.c_thresh and \
                     self.cL.reflected_light_intensity > self.c_thresh :
                     self.tank.on(SpeedPercent(-30),SpeedPercent(-30))
-                self.tank.on_for_degrees(SpeedPercent(30),SpeedPercent(30),30)
+                self.tank.on_for_degrees(SpeedPercent(30),SpeedPercent(30),20)
 
 #                self.follow_line(
 #                        direction=-1,
