@@ -19,11 +19,12 @@ def follow_for_distance(tank,distance):
     if not hasattr(tank, 'distance') or tank.distance is None:
         tank.left_motor.position = 0
         tank.distance = distance
-    if tank.left_motor.position >= tank.distance:
+    if tank.left_motor.position >= abs(tank.distance):
         tank.distance = None
         return False
     else:
         return True
+
 
 class Controller:
     def __init__(self,tank,solution,cross_detector,cL,cR):
@@ -68,14 +69,14 @@ class Controller:
 
             else:
                 if left_speed < default_speed:
-                    left += speed_delta
+                    left_speed += speed_delta
                 elif left_speed > default_speed:
-                    left -= speed_delta
+                    left_speed -= speed_delta
 
                 if right_speed < default_speed:
-                    right += speed_delta
+                    right_speed += speed_delta
                 elif right_speed > default_speed:
-                    right -= speed_delta
+                    right_speed -= speed_delta
             self.tank.on(SpeedPercent(left_speed),SpeedPercent(right_speed))
             time.sleep(interval)
 
