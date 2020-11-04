@@ -142,8 +142,8 @@ class Controller:
                         )
 
 
-                while sensor1.reflected_light_intensity  < c_thresh and \
-                    sensor2.reflected_light_intensity < c_thresh :
+                while self.cL.reflected_light_intensity  < self.c_thresh and \
+                    self.cL.reflected_light_intensity < self.c_thresh :
                     self.tank.on(SpeedPercent(-30),SpeedPercent(-30))
                 self.tank.on_for_degrees(SpeedPercent(30),SpeedPercent(30),30)
 
