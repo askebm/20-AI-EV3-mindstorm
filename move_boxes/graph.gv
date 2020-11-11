@@ -1,0 +1,14 @@
+digraph G {
+graph [fontname = "monospace"];
+node [fontname = "monospace"];
+edge [fontname = "monospace"];
+"XXXXXXXXXXXX\nXX...X.....X\nXX...X.....X\nXXJJJ.X..XXX\nX.J....MXXXX\nX...X...XXXX\nXXXXXXXXXXXX"
+"XXXXXXXXXXXX\nXX...X.....X\nXX...X.....X\nXXJJJ.X..XXX\nX.MJ....XXXX\nX...X...XXXX\nXXXXXXXXXXXX"
+"XXXXXXXXXXXX\nXX...X.....X\nXX...X.....X\nXXJJJ.X..XXX\nX.J....MXXXX\nX...X...XXXX\nXXXXXXXXXXXX" ->  "XXXXXXXXXXXX\nXX...X.....X\nXX...X.....X\nXXJJJ.X..XXX\nX.MJ....XXXX\nX...X...XXXX\nXXXXXXXXXXXX"[label="lllldlluR"];
+"XXXXXXXXXXXX\nXX...X.....X\nXX...X.....X\nXXJJJ.X..XXX\nXJM.....XXXX\nX...X...XXXX\nXXXXXXXXXXXX"
+"XXXXXXXXXXXX\nXX...X.....X\nXX...X.....X\nXXJJJ.X..XXX\nX.J....MXXXX\nX...X...XXXX\nXXXXXXXXXXXX" ->  "XXXXXXXXXXXX\nXX...X.....X\nXX...X.....X\nXXJJJ.X..XXX\nXJM.....XXXX\nX...X...XXXX\nXXXXXXXXXXXX"[label="llllL"];
+"XXXXXXXXXXXX\nXX...X.....X\nXX.J.X.....X\nXXJMJ.X..XXX\nX.J.....XXXX\nX...X...XXXX\nXXXXXXXXXXXX"
+"XXXXXXXXXXXX\nXX...X.....X\nXX...X.....X\nXXJJJ.X..XXX\nX.J....MXXXX\nX...X...XXXX\nXXXXXXXXXXXX" ->  "XXXXXXXXXXXX\nXX...X.....X\nXX.J.X.....X\nXXJMJ.X..XXX\nX.J.....XXXX\nX...X...XXXX\nXXXXXXXXXXXX"[label="llllU"];
+"XXXXXXXXXXXX\nXX...X.....X\nXX..JX.....X\nXXJJM.X..XXX\nX.J.....XXXX\nX...X...XXXX\nXXXXXXXXXXXX"
+"XXXXXXXXXXXX\nXX...X.....X\nXX...X.....X\nXXJJJ.X..XXX\nX.J....MXXXX\nX...X...XXXX\nXXXXXXXXXXXX" ->  "XXXXXXXXXXXX\nXX...X.....X\nXX..JX.....X\nXXJJM.X..XXX\nX.J.....XXXX\nX...X...XXXX\nXXXXXXXXXXXX"[label="lllU"];
+}
