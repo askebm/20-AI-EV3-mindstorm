@@ -135,6 +135,9 @@ class Graph():
         
 
     def generate_children(self, node):
+
+        if node.children:
+            return
         
         moves =[Position(1,0),Position(0,1),Position(-1,0),Position(0,-1)]
 
@@ -153,8 +156,8 @@ class Graph():
                     h = "".join(new_node.hash)
                     if not self.nodes.get(h,False):
                         self.nodes[h] = new_node
-
-                    new_node = self.nodes[h]
+                    else:
+                        new_node = self.nodes[h]
 
                     path = self.a_star(node, new_node, move)
 
@@ -360,7 +363,7 @@ l_yikes = [
 "XXXXXXXXXXXXXXXXX"
 ]
 
-graph = Graph(l_yikes)
+graph = Graph(l)
 
 # print(graph.root.children)
 
@@ -373,5 +376,5 @@ graph = Graph(l_yikes)
 
 solution = graph.a_star_global(max_iter=-1)
 solution_string = graph.create_solution_string(solution)
-
+print(solution_string)
 graph.to_dot("graph.gv")
