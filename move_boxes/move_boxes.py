@@ -5,7 +5,7 @@ import numpy as np
 from queue import PriorityQueue
 import heapdict
 import time
-
+##
 
 class Position():
 
@@ -48,6 +48,8 @@ class Node():
         self.children = {}
         self.hash = None
         self.parent = None
+        self.order = None
+
 
     def c(self):
         n = Node()
@@ -58,7 +60,7 @@ class Node():
         n.parent = self.parent
         return n
 
-
+##
 
 class Graph():
     def __init__(self,level):
@@ -92,8 +94,8 @@ class Graph():
             node = node.parent
         return cnt
 
-    def isSolution(self,joined_hash):
-        if self.solution == re.sub("M",".",joined_hash):
+    def is_solution(self,node):
+        if self.solution == re.sub("M",".","".join(node.hash)):
             return True
         else:
             return False
@@ -116,6 +118,22 @@ class Graph():
                 return False
         return True
 
+    def is_deadlock(self,box):
+        moves =[Position(1,0),Position(0,1)]
+
+        for goal in self.goals:
+            if goal == box:
+                return False
+
+        x_axis = self.level[box.y][box.x+1] + self.level[box.y][box.x-1]
+        y_axis = self.level[box.y+1][box.x] + self.level[box.y-1][box.x]
+
+        if "X" in x_axis and "X" in y_axis:
+            return True
+
+        return False
+        
+
     def generate_children(self, node):
         
         moves =[Position(1,0),Position(0,1),Position(-1,0),Position(0,-1)]
@@ -124,7 +142,8 @@ class Graph():
             for box_i in range(len(node.boxes)):
                 box = node.boxes[box_i]
                 new_box = move + box
-                if self.is_valid_move(box, move, node.hash):
+                if self.is_valid_move(box, move, node.hash) and \
+                        not self.is_deadlock(new_box):
                     new_node = Node()
                     new_node.player = box
                     new_node.boxes = node.boxes[:box_i] + node.boxes[box_i+1:]
@@ -207,7 +226,7 @@ class Graph():
                 elif move.y == -1: 
                     instruction = "U"
                 path__ = self.a_star_reconstruct_path(cameFrom,current) + instruction
-                print(path__)
+                #print(path__)
                 return self.a_star_reconstruct_path(cameFrom,current) + instruction
 
             moves =[Position(1,0),Position(0,1),Position(-1,0),Position(0,-1)]
@@ -224,6 +243,9 @@ class Graph():
                             openSet[neighbor] = fScore[neighbor]
         return None
 
+    def node_to_dot_string(self,node):
+        return str(node.order) + r'\n' + r'\n'.join(node.hash)
+
 
     def to_dot(self,path):
         f = open(path,mode='w')
@@ -231,16 +253,87 @@ class Graph():
         f.write('graph [fontname = "monospace"];\n')
         f.write('node [fontname = "monospace"];\n')
         f.write('edge [fontname = "monospace"];\n')
-        self._to_dot(f, self.root)
+        for node in self.nodes.values():
+            for child_hash,path in node.children.items():
+                child = self.nodes[child_hash]
+                f.write(r'"' \
+                        + self.node_to_dot_string(node) \
+                        + r'" ->  "' \
+                        + self.node_to_dot_string(child) \
+                        + r'"' \
+                        + r'[label="' + path + r'"];' \
+                        + "\n")
         f.write(r'}')
         f.close()
-    
-    def _to_dot(self, f, node, parent=None, path=""):
-        f.write(r'"' + r'\n'.join(node.hash) + r'"'+ "\n")
-        if parent != None:
-            f.write(r'"' + r'\n'.join(parent.hash) + r'" ->  "' + r'\n'.join(node.hash) + r'"' + r'[label="' + path + r'"];' + "\n")
-        for child in node.children:
-            self._to_dot(f, self.nodes[child], parent = node, path = node.children[child])
+
+    def a_star_global_heuristic(self,node):
+        result = 0
+        for box in node.boxes:
+            dist = np.inf
+            for g in self.goals:
+                l = (g-box).norm()
+                if l < dist:
+                    dist = l
+            result += dist
+        return result 
+
+    def a_star_global_reconstruct_path(self,cameFrom,current):
+        total_path = [current]
+        result = ""
+        while current in cameFrom.keys():
+            cF = cameFrom[current]
+            current = cF
+            total_path.insert(0,current)
+        return total_path
+
+    def a_star_global(self,max_iter=500):
+        order = 0
+        start = self.root
+        start.order = order
+        openSet = heapdict.heapdict()
+        openSet[start] = self.a_star_global_heuristic(start)
+
+        cameFrom = {}
+        gScore = {}
+        fScore = {}
+
+        gScore[start] = 0
+
+        fScore[start] = self.a_star_global_heuristic(start)
+
+        while openSet.__len__() > 0:
+            if max_iter == 0:
+                print("Max iterations reached")
+                return None
+            max_iter -= 1
+            current , current_score = openSet.popitem()
+            if current.order is None:
+                order += 1
+                current.order = order
+
+            if self.is_solution(current):
+                print("A-star found a solution")
+                return self.a_star_global_reconstruct_path(cameFrom,current)
+
+            self.generate_children(current)
+            for neighbor_hash in current.children:
+                neighbor = self.nodes[neighbor_hash]
+                tentative_gScore = gScore[current] + len(current.children[neighbor_hash])
+                if tentative_gScore < gScore.get(neighbor,np.inf):
+                    cameFrom[neighbor] = current
+                    gScore[neighbor] = tentative_gScore
+                    fScore[neighbor] = tentative_gScore + self.a_star_global_heuristic(neighbor)
+                    if not openSet.get(neighbor):
+                        openSet[neighbor] = fScore[neighbor]
+        print("A-start did not find a solution")
+        return None
+
+    def create_solution_string(self,node_list):
+        result = ""
+        for i in range(len(node_list)-1):
+            next_node_hash = "".join(node_list[i+1].hash)
+            result += node_list[i].children[next_node_hash]
+        return result
 
 
 
@@ -254,17 +347,31 @@ l = ["XXXXXXXXXXXX",
 "X...X...XXXX",
 "XXXXXXXXXXXX"]
 
-graph = Graph(l)
+l_yikes = [
+"XXXXXXXXXXXXXXXXX",
+"XXX..XXXXXXXXXXXX",
+"X..GGX.XXXXXXXXXX",
+"X.XGGX.X.....XXXX",
+"X.XG.XXX...J....X",
+"X.XG...X.J.J.JJ.X",
+"X.X..M.XXX.JXX..X",
+"X...........XXXXX",
+"XX..XXXXXXXXXXXXX",
+"XXXXXXXXXXXXXXXXX"
+]
 
-graph.generate_children(graph.root)
+graph = Graph(l_yikes)
 
 # print(graph.root.children)
 
-for node in graph.root.children:
-    print(node)
-    print(graph.root.children[node])
+#for node in graph.root.children:
+#    print(node)
+#    print(graph.root.children[node])
 
 # for node in graph.nodes:
 #     print(node)
+
+solution = graph.a_star_global(max_iter=-1)
+solution_string = graph.create_solution_string(solution)
 
 graph.to_dot("graph.gv")
