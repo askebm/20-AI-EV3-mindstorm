@@ -1,0 +1,546 @@
+levels/0.json
+A-star found a solution
+
+real	0m54.354s
+user	0m54.347s
+sys	0m0.772s
+0
+levels/100.json
+test.sh: line 3: 15451 Terminated              python move_boxes.py $level
+
+real	91m29.302s
+user	91m13.112s
+sys	0m10.305s
+143
+levels/101.json
+test.sh: line 3:  6798 Terminated              python move_boxes.py $level
+
+real	80m48.497s
+user	80m33.163s
+sys	0m10.384s
+143
+levels/102.json
+test.sh: line 3: 22817 Terminated              python move_boxes.py $level
+
+real	82m35.816s
+user	82m20.552s
+sys	0m9.977s
+143
+levels/104.json
+test.sh: line 3:  8775 Terminated              python move_boxes.py $level
+
+real	49m32.208s
+user	49m20.635s
+sys	0m8.380s
+143
+levels/108.json
+test.sh: line 3:  6358 Terminated              python move_boxes.py $level
+
+real	69m22.289s
+user	69m8.222s
+sys	0m9.769s
+143
+levels/10.json
+A-star found a solution
+
+real	0m14.802s
+user	0m14.862s
+sys	0m0.708s
+0
+levels/110.json
+A-star found a solution
+
+real	1m47.168s
+user	1m46.874s
+sys	0m0.963s
+0
+levels/11.json
+A-star found a solution
+
+real	84m44.555s
+user	84m29.895s
+sys	0m9.149s
+0
+levels/12.json
+A-star found a solution
+
+real	0m1.452s
+user	0m1.590s
+sys	0m0.659s
+0
+levels/13.json
+A-star found a solution
+
+real	0m4.912s
+user	0m5.030s
+sys	0m0.670s
+0
+levels/14.json
+test.sh: line 3:  3461 Terminated              python move_boxes.py $level
+
+real	111m49.823s
+user	111m30.384s
+sys	0m12.277s
+143
+levels/16.json
+test.sh: line 3:  8463 Terminated              python move_boxes.py $level
+
+real	60m23.023s
+user	60m10.440s
+sys	0m9.152s
+143
+levels/17.json
+A-star found a solution
+
+real	0m1.667s
+user	0m1.763s
+sys	0m0.703s
+0
+levels/18.json
+test.sh: line 3: 13248 Terminated              python move_boxes.py $level
+
+real	80m11.013s
+user	79m56.360s
+sys	0m9.869s
+143
+levels/19.json
+A-star found a solution
+
+real	96m28.283s
+user	96m10.593s
+sys	0m11.547s
+0
+levels/1.json
+A-star found a solution
+
+real	0m0.186s
+user	0m0.271s
+sys	0m0.719s
+0
+levels/21.json
+A-star found a solution
+
+real	0m9.719s
+user	0m9.850s
+sys	0m0.668s
+0
+levels/23.json
+A-star found a solution
+
+real	1m43.125s
+user	1m42.877s
+sys	0m0.944s
+0
+levels/24.json
+test.sh: line 3: 23676 Terminated              python move_boxes.py $level
+
+real	77m0.765s
+user	76m45.532s
+sys	0m10.446s
+143
+levels/25.json
+A-star found a solution
+
+real	3m43.673s
+user	3m42.883s
+sys	0m1.287s
+0
+levels/26.json
+test.sh: line 3:  8113 Terminated              python move_boxes.py $level
+
+real	83m30.418s
+user	83m14.603s
+sys	0m10.352s
+143
+levels/27.json
+test.sh: line 3: 25570 Terminated              python move_boxes.py $level
+
+real	81m41.327s
+user	81m25.102s
+sys	0m10.508s
+143
+levels/28.json
+test.sh: line 3: 10690 Terminated              python move_boxes.py $level
+
+real	68m44.167s
+user	68m30.343s
+sys	0m9.747s
+143
+levels/29.json
+A-star found a solution
+
+real	10m13.730s
+user	10m11.847s
+sys	0m1.915s
+0
+levels/2.json
+A-star found a solution
+
+real	0m0.453s
+user	0m0.547s
+sys	0m0.708s
+0
+levels/30.json
+A-star found a solution
+
+real	5m52.024s
+user	5m50.965s
+sys	0m1.466s
+0
+levels/32.json
+test.sh: line 3: 28974 Terminated              python move_boxes.py $level
+
+real	75m17.447s
+user	75m3.204s
+sys	0m9.720s
+143
+levels/33.json
+test.sh: line 3: 10358 Terminated              python move_boxes.py $level
+
+real	83m21.813s
+user	83m6.115s
+sys	0m10.435s
+143
+levels/34.json
+test.sh: line 3: 27908 Terminated              python move_boxes.py $level
+
+real	109m41.781s
+user	109m22.756s
+sys	0m11.811s
+143
+levels/35.json
+test.sh: line 3: 29441 Terminated              python move_boxes.py $level
+
+real	59m20.341s
+user	59m7.277s
+sys	0m9.306s
+143
+levels/36.json
+test.sh: line 3:   345 Terminated              python move_boxes.py $level
+
+real	70m58.207s
+user	70m43.508s
+sys	0m10.372s
+143
+levels/37.json
+test.sh: line 3: 11674 Terminated              python move_boxes.py $level
+
+real	73m27.748s
+user	73m13.054s
+sys	0m10.092s
+143
+levels/38.json
+test.sh: line 3: 23290 Terminated              python move_boxes.py $level
+
+real	102m12.419s
+user	101m54.672s
+sys	0m11.207s
+143
+levels/39.json
+test.sh: line 3: 20890 Terminated              python move_boxes.py $level
+
+real	68m57.039s
+user	68m43.741s
+sys	0m9.282s
+143
+levels/3.json
+A-star found a solution
+
+real	0m0.966s
+user	0m1.050s
+sys	0m0.708s
+0
+levels/40.json
+test.sh: line 3: 29807 Terminated              python move_boxes.py $level
+
+real	76m46.034s
+user	76m31.640s
+sys	0m9.786s
+143
+levels/41.json
+test.sh: line 3: 11931 Terminated              python move_boxes.py $level
+
+real	64m7.123s
+user	63m53.801s
+sys	0m9.526s
+143
+levels/43.json
+test.sh: line 3: 18077 Terminated              python move_boxes.py $level
+
+real	70m56.702s
+user	70m43.018s
+sys	0m9.433s
+143
+levels/44.json
+test.sh: line 3: 28328 Terminated              python move_boxes.py $level
+
+real	68m54.883s
+user	68m41.527s
+sys	0m9.117s
+143
+levels/45.json
+test.sh: line 3:  6094 Terminated              python move_boxes.py $level
+
+real	70m37.678s
+user	70m23.686s
+sys	0m9.619s
+143
+levels/46.json
+test.sh: line 3: 16236 Terminated              python move_boxes.py $level
+
+real	65m48.024s
+user	65m34.958s
+sys	0m9.292s
+143
+levels/47.json
+test.sh: line 3: 23370 Terminated              python move_boxes.py $level
+
+real	75m26.272s
+user	75m11.978s
+sys	0m9.800s
+143
+levels/48.json
+test.sh: line 3:  4892 Terminated              python move_boxes.py $level
+
+real	80m38.656s
+user	80m23.148s
+sys	0m10.462s
+143
+levels/49.json
+test.sh: line 3: 20956 Terminated              python move_boxes.py $level
+
+real	80m9.989s
+user	79m55.318s
+sys	0m9.841s
+143
+levels/4.json
+A-star found a solution
+
+real	1m8.052s
+user	1m7.867s
+sys	0m0.884s
+0
+levels/50.json
+test.sh: line 3:  6850 Terminated              python move_boxes.py $level
+
+real	79m42.032s
+user	79m26.765s
+sys	0m10.480s
+143
+levels/52.json
+test.sh: line 3: 22324 Terminated              python move_boxes.py $level
+
+real	81m42.847s
+user	81m27.727s
+sys	0m9.992s
+143
+levels/53.json
+test.sh: line 3:  7515 Terminated              python move_boxes.py $level
+
+real	74m28.429s
+user	74m13.870s
+sys	0m9.996s
+143
+levels/54.json
+test.sh: line 3: 19853 Terminated              python move_boxes.py $level
+
+real	98m53.386s
+user	98m35.882s
+sys	0m11.082s
+143
+levels/55.json
+A-star found a solution
+
+real	10m35.445s
+user	10m33.477s
+sys	0m1.883s
+0
+levels/56.json
+test.sh: line 3: 21261 Terminated              python move_boxes.py $level
+
+real	92m36.150s
+user	92m19.261s
+sys	0m10.874s
+143
+levels/57.json
+test.sh: line 3: 12723 Terminated              python move_boxes.py $level
+
+real	61m45.922s
+user	61m32.886s
+sys	0m9.345s
+143
+levels/58.json
+test.sh: line 3: 17639 Terminated              python move_boxes.py $level
+
+real	93m37.467s
+user	93m22.163s
+sys	0m9.640s
+143
+levels/59.json
+test.sh: line 3:  9628 Terminated              python move_boxes.py $level
+
+real	77m4.397s
+user	76m49.847s
+sys	0m9.688s
+143
+levels/60.json
+test.sh: line 3: 23675 Terminated              python move_boxes.py $level
+
+real	73m43.070s
+user	73m28.992s
+sys	0m9.573s
+143
+levels/61.json
+test.sh: line 3:  5004 Terminated              python move_boxes.py $level
+
+real	78m27.701s
+user	78m13.227s
+sys	0m9.789s
+143
+levels/63.json
+test.sh: line 3: 19524 Terminated              python move_boxes.py $level
+
+real	71m10.506s
+user	70m56.134s
+sys	0m9.612s
+143
+levels/65.json
+test.sh: line 3: 29679 Terminated              python move_boxes.py $level
+
+real	78m13.656s
+user	77m58.888s
+sys	0m10.096s
+143
+levels/66.json
+test.sh: line 3: 12823 Terminated              python move_boxes.py $level
+
+real	115m4.590s
+user	114m44.708s
+sys	0m12.106s
+143
+levels/67.json
+test.sh: line 3: 18477 Terminated              python move_boxes.py $level
+
+real	85m51.402s
+user	85m35.917s
+sys	0m10.292s
+143
+levels/69.json
+test.sh: line 3:  6149 Terminated              python move_boxes.py $level
+
+real	83m3.994s
+user	82m48.854s
+sys	0m10.099s
+143
+levels/6.json
+A-star found a solution
+
+real	0m0.327s
+user	0m0.466s
+sys	0m0.642s
+0
+levels/71.json
+test.sh: line 3: 23455 Terminated              python move_boxes.py $level
+
+real	68m10.492s
+user	67m56.883s
+sys	0m9.642s
+143
+levels/72.json
+test.sh: line 3: 32073 Terminated              python move_boxes.py $level
+
+real	73m55.569s
+user	73m41.563s
+sys	0m9.564s
+143
+levels/73.json
+test.sh: line 3: 12723 Terminated              python move_boxes.py $level
+
+real	93m1.299s
+user	92m44.966s
+sys	0m10.195s
+143
+levels/74.json
+test.sh: line 3:  4591 Terminated              python move_boxes.py $level
+
+real	97m44.272s
+user	97m27.721s
+sys	0m10.509s
+143
+levels/75.json
+test.sh: line 3: 30531 Terminated              python move_boxes.py $level
+
+real	116m11.125s
+user	115m51.846s
+sys	0m11.829s
+143
+levels/79.json
+A-star found a solution
+
+real	3m15.379s
+user	3m14.995s
+sys	0m0.964s
+0
+levels/7.json
+A-star found a solution
+
+real	0m7.947s
+user	0m8.030s
+sys	0m0.705s
+0
+levels/81.json
+test.sh: line 3:  6684 Terminated              python move_boxes.py $level
+
+real	64m15.507s
+user	64m2.535s
+sys	0m9.256s
+143
+levels/82.json
+test.sh: line 3: 13000 Terminated              python move_boxes.py $level
+
+real	97m4.620s
+user	96m48.271s
+sys	0m10.472s
+143
+levels/83.json
+test.sh: line 3:  7174 Terminated              python move_boxes.py $level
+
+real	80m1.197s
+user	79m46.067s
+sys	0m9.885s
+143
+levels/84.json
+test.sh: line 3: 22654 Terminated              python move_boxes.py $level
+
+real	79m33.881s
+user	79m18.346s
+sys	0m10.524s
+143
+levels/85.json
+test.sh: line 3:  6434 Terminated              python move_boxes.py $level
+
+real	96m21.852s
+user	96m5.283s
+sys	0m10.249s
+143
+levels/89.json
+test.sh: line 3: 31772 Terminated              python move_boxes.py $level
+
+real	106m7.881s
+user	105m49.401s
+sys	0m11.473s
+143
+levels/90.json
+test.sh: line 3: 31170 Terminated              python move_boxes.py $level
+
+real	69m55.300s
+user	69m40.956s
+sys	0m9.889s
+143
+levels/91.json
+test.sh: line 3:  9300 Terminated              python move_boxes.py $level
+
+real	86m36.880s
+user	86m21.363s
+sys	0m10.245s
+143
