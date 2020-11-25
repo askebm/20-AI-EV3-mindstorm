@@ -1,0 +1,561 @@
+../levels/0.json
+
+real	0m10,098s
+user	0m9,456s
+sys	0m0,258s
+0
+../levels/100.json
+Terminated
+
+real	5m22,844s
+user	5m17,988s
+sys	0m4,762s
+143
+../levels/101.json
+Terminated
+
+real	4m6,688s
+user	4m1,943s
+sys	0m4,745s
+143
+../levels/102.json
+Terminated
+
+real	4m36,281s
+user	4m31,855s
+sys	0m4,400s
+143
+../levels/104.json
+Terminated
+
+real	4m16,861s
+user	4m10,180s
+sys	0m4,823s
+143
+../levels/108.json
+Terminated
+
+real	5m36,600s
+user	5m28,984s
+sys	0m5,424s
+143
+../levels/10.json
+
+real	0m4,858s
+user	0m4,822s
+sys	0m0,172s
+0
+../levels/110.json
+
+real	0m13,609s
+user	0m13,368s
+sys	0m0,286s
+0
+../levels/11.json
+Terminated
+
+real	7m44,681s
+user	7m35,615s
+sys	0m5,392s
+143
+../levels/12.json
+
+real	0m0,433s
+user	0m0,500s
+sys	0m0,110s
+0
+../levels/13.json
+
+real	0m1,095s
+user	0m1,170s
+sys	0m0,146s
+0
+../levels/14.json
+Terminated
+
+real	5m40,320s
+user	5m35,419s
+sys	0m4,770s
+143
+../levels/16.json
+Terminated
+
+real	3m59,462s
+user	3m54,838s
+sys	0m4,551s
+143
+../levels/17.json
+
+real	0m0,669s
+user	0m0,733s
+sys	0m0,117s
+0
+../levels/18.json
+Terminated
+
+real	4m16,697s
+user	4m12,318s
+sys	0m4,432s
+143
+../levels/19.json
+Terminated
+
+real	6m22,550s
+user	6m18,082s
+sys	0m4,427s
+143
+../levels/1.json
+
+real	0m0,139s
+user	0m0,183s
+sys	0m0,140s
+0
+../levels/21.json
+
+real	0m1,809s
+user	0m1,890s
+sys	0m0,146s
+0
+../levels/23.json
+
+real	0m19,774s
+user	0m19,621s
+sys	0m0,316s
+0
+../levels/24.json
+Terminated
+
+real	4m35,271s
+user	4m31,000s
+sys	0m4,293s
+143
+../levels/25.json
+
+real	0m42,700s
+user	0m42,339s
+sys	0m0,556s
+0
+../levels/26.json
+Terminated
+
+real	4m42,786s
+user	4m38,411s
+sys	0m4,407s
+143
+../levels/27.json
+Terminated
+
+real	5m37,829s
+user	5m33,465s
+sys	0m4,324s
+143
+../levels/28.json
+Terminated
+
+real	3m49,780s
+user	3m45,755s
+sys	0m4,087s
+143
+../levels/29.json
+
+real	1m15,543s
+user	1m14,554s
+sys	0m1,099s
+0
+../levels/2.json
+
+real	0m0,276s
+user	0m0,319s
+sys	0m0,111s
+0
+../levels/30.json
+
+real	0m49,126s
+user	0m48,744s
+sys	0m0,570s
+0
+../levels/32.json
+Terminated
+
+real	4m4,298s
+user	3m59,746s
+sys	0m4,593s
+143
+../levels/33.json
+Terminated
+
+real	5m9,257s
+user	5m4,813s
+sys	0m4,433s
+143
+../levels/34.json
+Terminated
+
+real	5m28,639s
+user	5m24,302s
+sys	0m4,327s
+143
+../levels/35.json
+Terminated
+
+real	4m16,275s
+user	4m11,930s
+sys	0m4,373s
+143
+../levels/36.json
+Terminated
+
+real	4m56,197s
+user	4m51,759s
+sys	0m4,447s
+143
+../levels/37.json
+Terminated
+
+real	5m1,156s
+user	4m57,098s
+sys	0m4,050s
+143
+../levels/38.json
+Terminated
+
+real	4m24,377s
+user	4m20,018s
+sys	0m4,384s
+143
+../levels/39.json
+Terminated
+
+real	3m54,870s
+user	3m50,750s
+sys	0m4,167s
+143
+../levels/3.json
+
+real	0m0,379s
+user	0m0,518s
+sys	0m0,090s
+0
+../levels/40.json
+Terminated
+
+real	4m34,355s
+user	4m29,935s
+sys	0m4,350s
+143
+../levels/41.json
+Terminated
+
+real	4m17,248s
+user	4m12,931s
+sys	0m4,273s
+143
+../levels/43.json
+Terminated
+
+real	5m3,226s
+user	4m58,903s
+sys	0m4,223s
+143
+../levels/44.json
+Terminated
+
+real	4m40,880s
+user	4m36,436s
+sys	0m4,360s
+143
+../levels/45.json
+Terminated
+
+real	4m9,072s
+user	4m4,574s
+sys	0m4,463s
+143
+../levels/46.json
+Terminated
+
+real	4m7,271s
+user	4m3,121s
+sys	0m4,180s
+143
+../levels/47.json
+Terminated
+
+real	4m13,257s
+user	4m8,836s
+sys	0m4,380s
+143
+../levels/48.json
+Terminated
+
+real	4m50,953s
+user	4m46,583s
+sys	0m4,367s
+143
+../levels/49.json
+Terminated
+
+real	4m10,106s
+user	4m5,667s
+sys	0m4,407s
+143
+../levels/4.json
+
+real	0m19,336s
+user	0m19,172s
+sys	0m0,376s
+0
+../levels/50.json
+Terminated
+
+real	4m40,714s
+user	4m36,245s
+sys	0m4,483s
+143
+../levels/52.json
+Terminated
+
+real	4m55,088s
+user	4m50,496s
+sys	0m4,500s
+143
+../levels/53.json
+Terminated
+
+real	4m13,210s
+user	4m8,817s
+sys	0m4,423s
+143
+../levels/54.json
+Terminated
+
+real	4m51,882s
+user	4m47,305s
+sys	0m4,500s
+143
+../levels/55.json
+
+real	1m50,523s
+user	1m49,443s
+sys	0m1,213s
+0
+../levels/56.json
+Terminated
+
+real	4m52,424s
+user	4m48,092s
+sys	0m4,324s
+143
+../levels/57.json
+Terminated
+
+real	4m20,324s
+user	4m16,105s
+sys	0m4,240s
+143
+../levels/58.json
+Terminated
+
+real	3m52,858s
+user	3m48,068s
+sys	0m4,733s
+143
+../levels/59.json
+Terminated
+
+real	3m50,823s
+user	3m46,485s
+sys	0m4,326s
+143
+../levels/60.json
+Terminated
+
+real	3m53,867s
+user	3m49,627s
+sys	0m4,294s
+143
+../levels/61.json
+Terminated
+
+real	3m57,011s
+user	3m52,764s
+sys	0m4,227s
+143
+../levels/63.json
+Terminated
+
+real	4m16,281s
+user	4m12,261s
+sys	0m4,040s
+143
+../levels/65.json
+Terminated
+
+real	4m32,721s
+user	4m28,250s
+sys	0m4,483s
+143
+../levels/66.json
+Terminated
+
+real	5m32,481s
+user	5m27,903s
+sys	0m4,550s
+143
+../levels/67.json
+Terminated
+
+real	4m28,524s
+user	4m24,153s
+sys	0m4,324s
+143
+../levels/69.json
+Terminated
+
+real	4m26,418s
+user	4m21,861s
+sys	0m4,516s
+143
+../levels/6.json
+
+real	0m0,134s
+user	0m0,237s
+sys	0m0,127s
+0
+../levels/71.json
+Terminated
+
+real	3m38,467s
+user	3m34,185s
+sys	0m4,344s
+143
+../levels/72.json
+Terminated
+
+real	4m37,791s
+user	4m33,425s
+sys	0m4,367s
+143
+../levels/73.json
+Terminated
+
+real	4m36,555s
+user	4m31,999s
+sys	0m4,580s
+143
+../levels/74.json
+Terminated
+
+real	4m13,182s
+user	4m8,797s
+sys	0m4,350s
+143
+../levels/75.json
+Terminated
+
+real	4m43,661s
+user	4m38,875s
+sys	0m4,800s
+143
+../levels/79.json
+
+real	0m36,487s
+user	0m36,256s
+sys	0m0,413s
+0
+../levels/7.json
+
+real	0m1,948s
+user	0m2,023s
+sys	0m0,153s
+0
+../levels/81.json
+Terminated
+
+real	4m23,641s
+user	4m19,458s
+sys	0m4,201s
+143
+../levels/82.json
+Terminated
+
+real	4m11,217s
+user	4m6,848s
+sys	0m4,337s
+143
+../levels/83.json
+Terminated
+
+real	4m32,733s
+user	4m28,532s
+sys	0m4,204s
+143
+../levels/84.json
+Terminated
+
+real	5m9,410s
+user	5m5,209s
+sys	0m4,181s
+143
+../levels/85.json
+Terminated
+
+real	3m50,801s
+user	3m46,321s
+sys	0m4,473s
+143
+../levels/89.json
+Terminated
+
+real	4m8,072s
+user	4m3,677s
+sys	0m4,367s
+143
+../levels/90.json
+Terminated
+
+real	5m2,279s
+user	4m57,947s
+sys	0m4,314s
+143
+../levels/91.json
+Terminated
+
+real	3m52,847s
+user	3m48,309s
+sys	0m4,530s
+143
+../levels/93.json
+Terminated
+
+real	5m6,272s
+user	5m1,997s
+sys	0m4,257s
+143
+../levels/94.json
+Terminated
+
+real	4m2,016s
+user	3m57,576s
+sys	0m4,413s
+143
+../levels/96.json
+Terminated
+
+real	3m56,936s
+user	3m52,704s
+sys	0m4,277s
+143
+../levels/99.json
+Terminated
+
+real	3m59,032s
+user	3m54,731s
+sys	0m4,273s
+143
+../levels/9.json
+
+real	0m5,373s
+user	0m5,417s
+sys	0m0,180s
+0

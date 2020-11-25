@@ -5,6 +5,8 @@ import numpy as np
 from queue import PriorityQueue
 import heapdict
 import time
+import os
+import json
 
 
 ##
@@ -206,9 +208,9 @@ class Tree():
         for d in range(max_iter):
             result = self._bf_search(self.root,depth=d)
             if result != None:
-                print("Solution found")
+                #print("Solution found")
                 return result
-        print("No solution found")
+        #print("No solution found")
         return None
         
 
@@ -415,33 +417,46 @@ l = [
 
 ##
 
-try:
-    t_bf = Tree(l)
-    start = time.time()
-    solution = t_bf.bf_search(max_iter=200)
-    s_bf = None
-    if solution:
-        s_bf = t_bf.generate_path(solution)
-    print(s_bf)
-    end = time.time()
-    print("Time elapsed for bredth first: " + str(end-start))
-except:
-    print("bf number of nodes: " + str(t_bf.number_of_nodes()))
-    print("bf depth: " + str(t_bf.max_depth()))
+#try:
+#    t_bf = Tree(l)
+#    start = time.time()
+#    solution = t_bf.bf_search(max_iter=200)
+#    s_bf = None
+#    if solution:
+#        s_bf = t_bf.generate_path(solution)
+#    print(s_bf)
+#    end = time.time()
+#    print("Time elapsed for bredth first: " + str(end-start))
+#except:
+#    print("bf number of nodes: " + str(t_bf.number_of_nodes()))
+#    print("bf depth: " + str(t_bf.max_depth()))
+#
+###
+#
+#
+###
+## t.layer_to_dot("layer.gv",108)
+#print("Done")
+#
+###
+## t.to_dot("dot2.gv")
+#print("Done")
+#
+## print("a star number of nodes: " + str(t_a_star.number_of_nodes()))
+## print("a star depth: " + str(t_a_star.max_depth()))
+#
+#print("bf number of nodes: " + str(t_bf.number_of_nodes()))
+#print("bf depth: " + str(t_bf.max_depth()))
 
-##
+if __name__ == "__main__":
+    level_file = os.sys.argv[1]
+    f = open(level_file)
+    level = json.load(f)
+    tree = Tree(level)
+    if tree.bf_search(max_iter=10000):
+        exit(0)
+    else:
+        exit(1)
 
 
-##
-# t.layer_to_dot("layer.gv",108)
-print("Done")
 
-##
-# t.to_dot("dot2.gv")
-print("Done")
-
-# print("a star number of nodes: " + str(t_a_star.number_of_nodes()))
-# print("a star depth: " + str(t_a_star.max_depth()))
-
-print("bf number of nodes: " + str(t_bf.number_of_nodes()))
-print("bf depth: " + str(t_bf.max_depth()))
