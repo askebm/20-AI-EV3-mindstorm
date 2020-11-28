@@ -401,6 +401,18 @@ l = [
 "XXX"
 ]
 
+comp_map = [
+"XXXXXXXXXXXX",
+"XX...X....MX",
+"XX....J.JJ.X",
+"XXGG.XXJ..XX",
+"X.GG.X..XXXX",
+"X.......XXXX",
+"XXXXXXXXXXXX"
+]
+
+# solution string for comp_map: llDlLLLLrrrrrurrdLLLLLLulDDrddrrruUddllluLruurrurrrddLuLLLLulDDrddrrruUruLLLLulDulD
+
 ##
 
 
@@ -417,19 +429,19 @@ l = [
 
 ##
 
-#try:
-#    t_bf = Tree(l)
-#    start = time.time()
-#    solution = t_bf.bf_search(max_iter=200)
-#    s_bf = None
-#    if solution:
-#        s_bf = t_bf.generate_path(solution)
-#    print(s_bf)
-#    end = time.time()
-#    print("Time elapsed for bredth first: " + str(end-start))
-#except:
-#    print("bf number of nodes: " + str(t_bf.number_of_nodes()))
-#    print("bf depth: " + str(t_bf.max_depth()))
+try:
+   t_bf = Tree(comp_map)
+   start = time.time()
+   solution = t_bf.bf_search(max_iter=200)
+   s_bf = None
+   if solution:
+       s_bf = t_bf.generate_path(solution)
+   print(s_bf)
+   end = time.time()
+   print("Time elapsed for bredth first: " + str(end-start))
+except:
+   print("bf number of nodes: " + str(t_bf.number_of_nodes()))
+   print("bf depth: " + str(t_bf.max_depth()))
 #
 ###
 #
