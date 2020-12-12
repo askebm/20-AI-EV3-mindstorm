@@ -38,6 +38,9 @@ for i in range(df.shape[0]):
     level = df.iloc[i]['level']
     df.loc[i,'boxes'] = number_of_boxes(level)
 
+df.to_csv('results_with_boxes.csv',index=False)
+
+
 ##
 df.loc[:,['boxes','succes']].boxplot(by='succes')
 plt.savefig('plots/BoxPlotBySucces.pgf')
