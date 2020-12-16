@@ -4,23 +4,27 @@ from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_4
 from ev3dev2.sensor.lego import *
 from ev3dev2.led import Leds
 from ev3dev2.sound import Sound
+from ev3dev2.wheel import EV3Tire
 import time
 
-def follow_until_color(tank,sensor,color):
-    if sensor.color != color:
-        return True
-    else:
+
+def follow_until_color(tank,sensor1,sensor2,c_thresh = 20):
+    if sensor1.reflected_light_intensity  < c_thresh and \
+            sensor2.reflected_light_intensity < c_thresh :
         return False
+    else:
+        return True
 
 def follow_for_distance(tank,distance):
     if not hasattr(tank, 'distance') or tank.distance is None:
         tank.left_motor.position = 0
         tank.distance = distance
-    if tank.left_motor.position >= tank.distance:
+    if abs(tank.left_motor.position) >= tank.distance:
         tank.distance = None
         return False
     else:
         return True
+
 
 class Controller:
     def __init__(self,tank,solution,cross_detector,cL,cR):
@@ -40,30 +44,70 @@ class Controller:
         self.cR = cR
         self.c_thresh = 24
 
+        for i in range(len(self.solution)-1):
+            solution_list = list(self.solution)
+            c = solution_list[i]
+            cN = solution_list[i+1]
+            if c.isupper() and c == cN:
+                solution_list[i]= c.lower()
+            self.solution = "".join(solution_list)
+
+
+    def follow_line(self,interval=0.005,direction=1,speed_delta = 8,condition_func = lambda tank=None : True,**kwargs):
+        default_speed = direction*30
+        speed_delta = direction*8
+        while condition_func(tank=self.tank , **kwargs):
+            
+            right_value = self.cR.reflected_light_intensity
+            left_value = self.cL.reflected_light_intensity
+
+            left_speed = default_speed
+            right_speed = default_speed
+            
+            if left_value < self.c_thresh and right_value < self.c_thresh:
+                pass
+            elif left_value < self.c_thresh:
+                #TURN LEFT
+                left_speed += speed_delta
+                right_speed -= speed_delta
+
+            elif right_value < self.c_thresh:
+                #TURN RIGHT
+                left_speed -= speed_delta
+                right_speed += speed_delta
+
+            else:
+                if left_speed < default_speed:
+                    left_speed += speed_delta
+                elif left_speed > default_speed:
+                    left_speed -= speed_delta
+
+                if right_speed < default_speed:
+                    right_speed += speed_delta
+                elif right_speed > default_speed:
+                    right_speed -= speed_delta
+            self.tank.on(SpeedPercent(left_speed),SpeedPercent(right_speed))
+            time.sleep(interval)
+
+
+
+
     def rotate(self,turns):
+        turn_deg = 170
+
         if turns == -2:
             turns = 2
 
         if turns == -1:
-            self.tank.on(SpeedPercent(30),SpeedPercent(-30))
-            while cL.reflected_light_intensity < self.c_thresh:
-                pass
-            self.tank.stop()
-        elif turns == 1:
-            self.tank.on(SpeedPercent(-30),SpeedPercent(30))
-            while cR.reflected_light_intensity > self.c_thresh:
-                pass
-            while cR.reflected_light_intensity < self.c_thresh:
-                pass
-            while cR.reflected_light_intensity > self.c_thresh:
-                pass
+            self.tank.turn_right(SpeedPercent(30),70)
 
-            if turns == 2:
-                while cR.reflected_light_intensity < self.c_thresh:
-                    pass
-                while cR.reflected_light_intensity > self.c_thresh:
-                    pass
-            self.tank.stop()
+        elif turns == 1:
+            self.tank.turn_left(SpeedPercent(30),70)
+
+        elif turns == 2:
+            self.tank.turn_left(SpeedPercent(30),140)
+
+
 
     def change_dir(self,direction):
         l = {"u":"lurd",
@@ -77,12 +121,11 @@ class Controller:
 
         self.tank.on_for_degrees(SpeedPercent(30),SpeedPercent(30),80),
 
-#        for u in range(i+1):
-#            self.spkr.beep()
-#            time.sleep(0.1)
+        #for u in range(i+1):
+        #    self.spkr.beep()
+        #    time.sleep(0.1)
 
-        if i != 1:
-            self.rotate(i-1)
+        self.rotate(i-1)
         
         
 
@@ -90,33 +133,50 @@ class Controller:
         for action in self.solution:
             self.change_dir(action.lower())
 
-            self.tank.follow_line(
-                kp=11.3, ki=0.05, kd=3.2,
-                speed=SpeedPercent(30),
-                follow_for=follow_until_color,
-                sensor=self.cross_detector,
-                color=1
-                )
+            self.follow_line(
+                    condition_func = follow_until_color,
+                    sensor1=self.cL,
+                    sensor2=self.cR
+                    )
+
+
             if action.isupper():
             
+                #self.spkr.tone([(392,350,100),(700,350,100)],play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
                 self.tank.on_for_degrees(SpeedPercent(30),SpeedPercent(30),30)
 
-                self.tank.follow_line(
-                        kp=11.3, ki=0.05, kd=3.2,
-                        speed=SpeedPercent(30),
-                        follow_for=follow_for_distance,
+                self.follow_line(
+                        condition_func=follow_for_distance,
                         distance=470
                         )
 
-                self.tank.on_for_degrees(SpeedPercent(-30),SpeedPercent(-30),470)
+
+                while self.cL.reflected_light_intensity  > self.c_thresh and \
+                    self.cL.reflected_light_intensity > self.c_thresh :
+                    self.tank.on(SpeedPercent(-30),SpeedPercent(-30))
+                self.tank.on_for_degrees(SpeedPercent(30),SpeedPercent(30),20)
+
+#                self.follow_line(
+#                        direction=-1,
+#                        speed_delta=16,
+#                        condition_func=follow_for_distance,
+#                        distance=470
+#                        )
 
 
+                        
+
+        self.tank.stop()
 
 
-tank = MoveTank(OUTPUT_A,OUTPUT_B)
+tank = MoveDifferential(OUTPUT_A,OUTPUT_B,EV3Tire,120)
 cR = ColorSensor(INPUT_1)
 cL = ColorSensor(INPUT_2)
 tank.cs = cR
-con = Controller(tank,"ur",cL,cL,cR)
+con = Controller(tank,"lllldlluRRUdRRRdrUUruulldRRdldlluLuulldRurDDullDRdRRRdrUUruurrdLulDulldRddlllldlluRRRRRdrUUdlllluurDldRRRdrU",cL,cL,cR)
+
+
 
 con.run()
+
+
