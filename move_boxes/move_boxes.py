@@ -363,7 +363,17 @@ l_yikes = [
 "XXXXXXXXXXXXXXXXX"
 ]
 
-graph = Graph(l)
+comp_map = [
+"XXXXXXXXXXXX",
+"XX...X....MX",
+"XX....J.JJ.X",
+"XXGG.XXJ..XX",
+"X.GG.X..XXXX",
+"X.......XXXX",
+"XXXXXXXXXXXX"
+]
+
+graph = Graph(comp_map)
 
 # print(graph.root.children)
 
@@ -374,7 +384,17 @@ graph = Graph(l)
 # for node in graph.nodes:
 #     print(node)
 
+start = time.time()
+
 solution = graph.a_star_global(max_iter=-1)
 solution_string = graph.create_solution_string(solution)
 print(solution_string)
+
+end = time.time()
+
+print("Solution length " + str(len(solution_string)))
+print("Time elapsed for A*: " + str(end-start))
+print("Number of nodes " + str(graph.number_of_nodes()))
+
 graph.to_dot("graph.gv")
+

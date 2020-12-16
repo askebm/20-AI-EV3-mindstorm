@@ -412,7 +412,8 @@ comp_map = [
 ]
 
 # solution string for comp_map: llDlLLLLrrrrrurrdLLLLLLulDDrddrrruUddllluLruurrurrrddLuLLLLulDDrddrrruUruLLLLulDulD
-
+                                
+                               #llldLLLLulDDurrrrurrDlllldddrrurUddllluuurrurrdLLLLulDDurrrurrrrdLLLLLLLulDrrrrrrrdLulllldddrrurUruLLLLulD
 ##
 
 
@@ -438,7 +439,10 @@ try:
        s_bf = t_bf.generate_path(solution)
    print(s_bf)
    end = time.time()
-   print("Time elapsed for bredth first: " + str(end-start))
+   print("Time elapsed for breadth first: " + str(end-start))
+   print("bf number of nodes: " + str(t_bf.number_of_nodes()))
+   print("bf depth: " + str(t_bf.max_depth()))
+   print(len(s_bf))
 except:
    print("bf number of nodes: " + str(t_bf.number_of_nodes()))
    print("bf depth: " + str(t_bf.max_depth()))
@@ -460,15 +464,15 @@ except:
 #print("bf number of nodes: " + str(t_bf.number_of_nodes()))
 #print("bf depth: " + str(t_bf.max_depth()))
 
-if __name__ == "__main__":
-    level_file = os.sys.argv[1]
-    f = open(level_file)
-    level = json.load(f)
-    tree = Tree(level)
-    if tree.bf_search(max_iter=10000):
-        exit(0)
-    else:
-        exit(1)
+# if __name__ == "__main__":
+#     level_file = os.sys.argv[1]
+#     f = open(level_file)
+#     level = json.load(f)
+#     tree = Tree(level)
+#     if tree.bf_search(max_iter=10000):
+#         exit(0)
+#     else:
+#         exit(1)
 
 
 
