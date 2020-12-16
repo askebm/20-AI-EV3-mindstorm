@@ -342,7 +342,7 @@ class Graph():
 
 
 
-l = ["XXXXXXXXXXXX",
+l_first = ["XXXXXXXXXXXX",
 "XX...X.....X",
 "XX...X.GG..X",
 "XXJJJ.XGGXXX",
@@ -350,7 +350,8 @@ l = ["XXXXXXXXXXXX",
 "X...X...XXXX",
 "XXXXXXXXXXXX"]
 
-l_yikes = [
+# not able to find a solution
+l_hard = [
 "XXXXXXXXXXXXXXXXX",
 "XXX..XXXXXXXXXXXX",
 "X..GGX.XXXXXXXXXX",
@@ -388,13 +389,13 @@ start = time.time()
 
 solution = graph.a_star_global(max_iter=-1)
 solution_string = graph.create_solution_string(solution)
-print(solution_string)
 
 end = time.time()
 
+print(solution_string)
 print("Solution length " + str(len(solution_string)))
 print("Time elapsed for A*: " + str(end-start))
 print("Number of nodes " + str(graph.number_of_nodes()))
 
-graph.to_dot("graph.gv")
+# graph.to_dot("graph.gv")
 

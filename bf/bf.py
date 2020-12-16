@@ -408,22 +408,18 @@ comp_map = [
 
 ##
 
-try:
-   t_bf = Tree(comp_map)
-   start = time.time()
-   solution = t_bf.bf_search(max_iter=200)
-   s_bf = None
-   if solution:
-       s_bf = t_bf.generate_path(solution)
-   print(s_bf)
-   end = time.time()
-   print("Time elapsed for breadth first: " + str(end-start))
-   print("bf number of nodes: " + str(t_bf.number_of_nodes()))
-   print("bf depth: " + str(t_bf.max_depth()))
-   print(len(s_bf))
-except:
-   print("bf number of nodes: " + str(t_bf.number_of_nodes()))
-   print("bf depth: " + str(t_bf.max_depth()))
+t_bf = Tree(l_first)
+start = time.time()
+solution = t_bf.bf_search(max_iter=200)
+end = time.time()
+
+if solution:
+    s_bf = t_bf.generate_path(solution)
+print(s_bf)
+print("Time elapsed for breadth first: " + str(end-start))
+print("bf number of nodes: " + str(t_bf.number_of_nodes()))
+print("bf depth: " + str(t_bf.max_depth()))
+print(len(s_bf))
 
 
 ## t.layer_to_dot("layer.gv",108)
