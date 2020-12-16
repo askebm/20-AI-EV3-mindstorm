@@ -10,8 +10,6 @@ import json
 
 
 ##
-
-
 class Position():
 
     def __init__(self,x,y):
@@ -38,7 +36,6 @@ class Position():
         return np.sqrt(self.x**2+self.y**2)
 
 ##
-
 class Node():
     def __init__(self):
         self.boxes = []
@@ -106,7 +103,6 @@ class Tree():
         return result
 
     def generate_children(self,node,graph=False):
-#        print("I wanna make children")
         moves =[Position(1,0),Position(0,1),Position(-1,0),Position(0,-1)]
         for p in moves:
             new_player = p+node.player
@@ -120,13 +116,6 @@ class Tree():
             elif ( node.hash[new_player.y][new_player.x] == "J" and
                         (node.hash[behind_box.y][behind_box.x] == ".")):
 
-                # old deadlock detection
-                # if not [True for g in self.goals if behind_box == g]:
-                #     for move in moves:
-                #         maybe_wall = move + behind_box
-                #         if self.level[maybe_wall.y][maybe_wall.x] == "X":
-                #             wall_counter +=1
-                
                 bb_is_goal = False
                 for goal in self.goals:
                     if behind_box == goal:
@@ -188,7 +177,6 @@ class Tree():
             
             
             if n != None:
-#                print("I made a child")
                 n.hash = self.generate_hash(n)
                 h = "".join(n.hash)
                 if not self.nodes.get(h,False):
@@ -208,16 +196,13 @@ class Tree():
         for d in range(max_iter):
             result = self._bf_search(self.root,depth=d)
             if result != None:
-                #print("Solution found")
                 return result
-        #print("No solution found")
         return None
         
 
     def _bf_search(self,node,depth=1):
         if depth == 0:
             self.generate_children(node)
-#            print("Generated " + str(len(node.children)) +" children")
             for child in node.children:
                 result = True
                 if self.isSolution("".join(child.hash)):
@@ -369,7 +354,7 @@ class Tree():
 
 ##
 
-l_wat = ["XXXXXXXXXXXX",
+l_first = ["XXXXXXXXXXXX",
 "XX...X.....X",
 "XX...X.GG..X",
 "XXJJJ.XGGXXX",
@@ -377,7 +362,7 @@ l_wat = ["XXXXXXXXXXXX",
 "X...X...XXXX",
 "XXXXXXXXXXXX"]
 
-l_yikes = [
+l_hard = [
 "XXXXXXXXXXXXXXXXX",
 "XXX..XXXXXXXXXXXX",
 "X..GGX.XXXXXXXXXX",
@@ -390,7 +375,7 @@ l_yikes = [
 "XXXXXXXXXXXXXXXXX"
 ]
 
-l = [
+l_tunnel = [
 "XXXXXXXXXX",
 "X........X",
 "X.X.X.X.XX",
@@ -411,13 +396,6 @@ comp_map = [
 "XXXXXXXXXXXX"
 ]
 
-# solution string for comp_map: llDlLLLLrrrrrurrdLLLLLLulDDrddrrruUddllluLruurrurrrddLuLLLLulDDrddrrruUruLLLLulDulD
-                                
-                               #llldLLLLulDDurrrrurrDlllldddrrurUddllluuurrurrdLLLLulDDurrrurrrrdLLLLLLLulDrrrrrrrdLulllldddrrurUruLLLLulD
-##
-
-
-##
 
 # t_a_star = Tree(l)
 # start = time.time()
@@ -446,23 +424,15 @@ try:
 except:
    print("bf number of nodes: " + str(t_bf.number_of_nodes()))
    print("bf depth: " + str(t_bf.max_depth()))
-#
-###
-#
-#
-###
+
+
 ## t.layer_to_dot("layer.gv",108)
 #print("Done")
-#
-###
 ## t.to_dot("dot2.gv")
 #print("Done")
-#
+
 ## print("a star number of nodes: " + str(t_a_star.number_of_nodes()))
 ## print("a star depth: " + str(t_a_star.max_depth()))
-#
-#print("bf number of nodes: " + str(t_bf.number_of_nodes()))
-#print("bf depth: " + str(t_bf.max_depth()))
 
 # if __name__ == "__main__":
 #     level_file = os.sys.argv[1]
