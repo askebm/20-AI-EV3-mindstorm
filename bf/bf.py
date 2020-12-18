@@ -215,76 +215,7 @@ class Tree():
                      return res
             return None
 
-    def a_star_heuristic(self,node):
-        result = 0
-        for box in node.boxes:
-            dist = np.inf
-            for g in self.goals:
-                l = (g-box).norm()
-                if l < dist:
-                    dist = l
-            result += dist
-        return result 
-
-    def a_star_reconstruct_path(self,cameFrom,current):
-        total_path = [current]
-        result = ""
-        while current in cameFrom.keys():
-
-            cF = cameFrom[current]
-            delta_move = current.player - cF.player
-            instruction = ""
-            if delta_move.x == -1:
-                instruction = "l"
-            elif delta_move.x == 1: 
-                instruction = "r"
-            elif delta_move.y == 1: 
-                instruction = "d"
-            elif delta_move.y == -1: 
-                instruction = "u"
-
-            if current.boxes != cF.boxes:
-                instruction = instruction.upper()
-            result = instruction + result
-
-            current = cF
-            total_path.insert(0,current)
-        
-        return result
-
-    def a_star(self,max_iter=500):
-        start = self.root
-        openSet = heapdict.heapdict()
-        openSet[start] = self.a_star_heuristic(start)
-
-        cameFrom = {}
-        gScore = {}
-        fScore = {}
-
-        gScore[start] = 0
-
-        fScore[start] = self.a_star_heuristic(start)
-
-        while openSet.__len__() > 0:
-            max_iter -= 1
-            current , current_score = openSet.popitem()
-            if self.isSolution("".join(current.hash)):
-                print("A-star found a solution")
-                return self.a_star_reconstruct_path(cameFrom,current)
-
-            self.generate_children(current,graph=True)
-            for neighbor in current.children:
-                tentative_gScore = gScore[current] + 1
-                if tentative_gScore < gScore.get(neighbor,np.inf):
-                    cameFrom[neighbor] = current
-                    gScore[neighbor] = tentative_gScore
-                    fScore[neighbor] = tentative_gScore + self.a_star_heuristic(neighbor)
-                    if not openSet.get(neighbor):
-                        openSet[neighbor] = fScore[neighbor]
-        print("A-start did not find a solution")
-        return None
-
-
+    
 
 
 
@@ -304,10 +235,6 @@ class Tree():
             f.write(r'"' + r'\n'.join(node.parent.hash) + r'" ->  "' + r'\n'.join(node.hash) + r'"'+ "\n")
         for child in node.children:
             self._to_dot(f,child)
-
-
-    
-
 
 
     def layer_to_dot(self,path,layer):
